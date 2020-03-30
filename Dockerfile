@@ -1,5 +1,4 @@
-FROM ubuntu:bionic-20190612
-LABEL maintainer="sameer@damagehead.com"
+FROM ubuntu:bionic-20200311
 
 ENV SQUID_VERSION=3.5.27 \
     SQUID_CACHE_DIR=/var/spool/squid \
@@ -11,6 +10,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
+COPY squid.conf /etc/squid/squid.conf
 RUN chmod 755 /sbin/entrypoint.sh
 
 EXPOSE 3128/tcp
